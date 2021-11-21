@@ -9,6 +9,16 @@ call vundle#begin()
 " let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Valloric/MatchTagAlways'
+Plugin 'preservim/nerdtree'
+Plugin 'xuyuanp/nerdtree-git-plugin'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'philrunninger/nerdtree-visual-selection'
+Plugin 'scrooloose/syntastic'
+Plugin 'sonph/onehalf', { 'rtp': 'vim' }
+Plugin 'rakr/vim-one'
+Plugin 'ycm-core/YouCompleteMe'
+
+
 " My plugins
 Bundle 'ajh17/spacegray.vim'
 Bundle 'bling/vim-airline'
@@ -21,8 +31,8 @@ Bundle 'hdima/python-syntax'
 Bundle 'tpope/vim-repeat'
 Bundle 'embear/vim-localvimrc'
 Bundle 'leafgarland/typescript-vim'
-Bundle 'valloric/youcompleteme'
-Bundle 'scrooloose/nerdtree'
+" Bundle 'valloric/youcompleteme'
+" Bundle 'scrooloose/nerdtree'
 
 
 call vundle#end()
@@ -58,10 +68,14 @@ let g:indentLine_char = '┆'
 "color jellybeans	" set background=dark for other machine, but use jellybeans in my computer
 " }}}
 "spacegray
-colorscheme spacegray
-let g:spacegray_underline_search = 1
-let g:spacegray_use_italics = 1
-let g:spacegray_low_contrast = 1
+"""" CONFIGURE FOR ONEHALF THEME
+syntax on
+set t_Co=256
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
+"let g:spacegray_underline_search = 1
+"let g:spacegray_use_italics = 1
+"let g:spacegray_low_contrast = 1
 
 
 " vim-localvimrc
@@ -135,3 +149,33 @@ if has('persistent_undo')      "check if your vim version supports it
   set undofile                 "turn on the feature  
   set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
   endif     
+
+" Shortcut to open NerdTree
+noremap <C-f> :NERDTreeFind<CR>
+noremap <Leader>n :NERDTreeFocus<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTree<CR>
+
+map <C-l> :tabn<CR>
+map <C-h> :tabp<CR>
+" map <C-n> :tabnew<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\\.swo$', '\\.swp$', '\\.git']
+let NERDTreeChDirMode=0
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+let NERDTreeAutoDeleteBuffer=1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+"" Setup for Syntastic
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pylint']
+

@@ -179,3 +179,12 @@ let NERDTreeDirArrows = 1
 "let g:syntastic_check_on_wq = 0
 "let g:syntastic_python_checkers = ['pylint']
 
+autocmd BufNewFile *.cpp execute "0r ~/.vim/template/".input("Template name: ").".cpp"
+map <F9> :!g++ -g % -o %:r && ./%:r <CR>
+map <F5> :!g++ -g % -o %:r <CR>
+map <F2> :w <CR>
+map <F12> :!gdb ./%:r <CR>
+" Automatically closing braces
+inoremap {<CR> {<CR>}<Esc>ko
+inoremap [<CR> [<CR>]<Esc>ko
+inoremap (<CR> (<CR>)<Esc>ko
